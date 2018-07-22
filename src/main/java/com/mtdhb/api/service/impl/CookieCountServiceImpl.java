@@ -1,5 +1,7 @@
 package com.mtdhb.api.service.impl;
 
+import java.sql.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,11 @@ public class CookieCountServiceImpl implements CookieCountService {
     @Override
     public void delete() {
         cookieCountRepository.deleteAll();
+    }
+
+    @Override
+    public void delete(Timestamp gmtCreate) {
+        cookieCountRepository.deleteByGmtCreateLessThan(gmtCreate);
     }
 
 }
